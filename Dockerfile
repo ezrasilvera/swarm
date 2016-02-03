@@ -1,5 +1,7 @@
 FROM golang:1.5.2
 
+MAINTAINER Ezra Silvera <ezra@il.ibm.com>
+
 COPY . /go/src/github.com/docker/swarm
 WORKDIR /go/src/github.com/docker/swarm
 

@@ -708,7 +708,7 @@ func (e *Engine) Create(config *ContainerConfig, name string, pullImage bool, au
 	// Force a state refresh to pick up the newly created container.
 	e.refreshContainer(id, true)
 	e.RefreshVolumes()
-	e.RefreshNetworks()
+	//e.RefreshNetworks()
 
 	e.RLock()
 	defer e.RUnlock()
@@ -742,7 +742,7 @@ func (e *Engine) CreateNetwork(request *dockerclient.NetworkCreate) (*dockerclie
 	response, err := e.client.CreateNetwork(request)
 	e.CheckConnectionErr(err)
 
-	e.RefreshNetworks()
+	//e.RefreshNetworks()
 
 	return response, err
 }
@@ -888,12 +888,12 @@ func (e *Engine) handler(ev *dockerclient.Event, _ chan error, args ...interface
 		// order to update container.Info and get the new NetworkSettings.
 		e.refreshContainer(ev.Id, true)
 		e.RefreshVolumes()
-		e.RefreshNetworks()
+//		e.RefreshNetworks()
 	default:
 		// Otherwise, do a "soft" refresh of the container.
 		e.refreshContainer(ev.Id, false)
 		e.RefreshVolumes()
-		e.RefreshNetworks()
+//		e.RefreshNetworks()
 	}
 
 	// If there is no event handler registered, abort right now.
